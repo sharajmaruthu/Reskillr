@@ -1,5 +1,7 @@
 # ReSkillr AI - Resume Analyzer
 
+## Live at - https://reskillreai.streamlit.app/
+
 ![ReSkillr AI](https://img.shields.io/badge/ReSkillr-AI-blueviolet)
 
 ## Overview
@@ -24,8 +26,8 @@ ReSkillr AI is a streamlit-based web application that uses AI to analyze and imp
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/sharajmaruthu/reskillr-ai.git
-cd reskillr-ai
+git clone https://github.com/sharajmaruthu/reskillr.git
+cd reskillr
 ```
 
 2. Install required dependencies:
@@ -40,7 +42,7 @@ export OPENROUTER_API_KEY=your_api_key_here
 
 4. Run the application:
 ```bash
-streamlit run app.py
+streamlit run main.py
 ```
 
 ## Usage
@@ -54,7 +56,7 @@ streamlit run app.py
 ## Technology Stack
 
 - **Streamlit**: Frontend framework
-- **OpenRouter API**: Uses DeepSeek-R1-0528-Qwen3-8B model for AI analysis
+- **OpenRouter API**: Used for AI analysis
 - **PyPDF2**: PDF processing
 - **xhtml2pdf**: PDF generation
 
@@ -77,11 +79,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - **Email**: simplysharaj@gmail.com
 - **LinkedIn**: [Sharaj MM](https://www.linkedin.com/in/sharajmm/)
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgements
 
 - Developed by Sharaj MM
-- Powered by DeepSeek-R1-0528-Qwen3-8B model via OpenRouter API
