@@ -8,10 +8,6 @@ from xhtml2pdf import pisa
 import requests
 import json
 
-# Current date and user info as specified
-current_datetime = "2025-06-12 22:24:09"
-current_user_login = "sharajmaruthu"
-
 # Load environment variable for OpenRouter API key
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
@@ -140,8 +136,8 @@ def local_css():
         
         .logo-text {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 2rem;
+            font-weight: 700;
             color: var(--gh-text-color);
             margin: 0;
             padding: 0;
@@ -331,7 +327,7 @@ def on_analyze_click():
 with st.sidebar:
     st.markdown("""
     <div class="logo-container">
-        <div class="logo-text">ReSkillr<span class="logo-ai">AI</span></div>
+        <div class="logo-text">ReSkillr<span class="logo-ai"> AI</span></div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -356,7 +352,7 @@ with st.sidebar:
         st.markdown('<p class="missing-field-warning">Please upload a resume</p>', unsafe_allow_html=True)
     
     if not api_key_available:
-        st.markdown('<div class="api-warning">⚠️ OpenRouter API key missing. Please check your environment variables.</div>', unsafe_allow_html=True)
+        st.markdown('<div class="api-warning">API missing.</div>', unsafe_allow_html=True)
     
     if uploaded_file:
         file_size = uploaded_file.size / 1024
@@ -395,7 +391,7 @@ with st.sidebar:
 # Add custom footer with new text
 st.markdown("""
 <div class="custom-footer">
-    Hi, I'm Sharaj MM - Full-Stack Dev | Ai and Cloud Enthusiast
+     &copy 2025 ReSkillr AI - Made by Sharaj MM - Full Stack Developer | AI & Cloud Enthusiast.
 </div>
 <div class="bottom-padding"></div>
 """, unsafe_allow_html=True)
@@ -540,7 +536,7 @@ def extract_text(uploaded_file):
         try:
             reader = PyPDF2.PdfReader(uploaded_file)
             text_content = "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
-            return text_content if text_content.strip() else "No text content could be extracted from this PDF."
+            return text_content if text_content.strip() else "Sorry, No text content could be extracted from this PDF."
         except Exception as e:
             return f"Error extracting PDF content: {str(e)}"
     else:
@@ -569,7 +565,7 @@ def query_openrouter_api(prompt):
         data = {
             "model": "deepseek/deepseek-r1-0528-qwen3-8b:free",
             "messages": [
-                {"role": "system", "content": "You are an experienced HR and resume reviewer. Respond only in plain text. No markdown."},
+                {"role": "system", "content": "You are an experienced HR and resume reviewer. Respond only in plain text and well structured and well aligned. No markdown."},
                 {"role": "user", "content": prompt}
             ],
             "temperature": 0.7,
@@ -590,7 +586,7 @@ def query_openrouter_api(prompt):
             return f"Error: API returned status code {response.status_code}. {response.text}"
     
     except Exception as e:
-        return f"Sorry, I couldn't analyze your resume due to an error.\n\nDetails: {str(e)}\n\nPlease check your API key configuration or try again later."
+        return f"Sorry, I couldn't analyze your resume due to an error. Please try again later."
 
 # Function to generate improved version of the resume
 def query_openrouter_improved_version(resume_text, job_role):
@@ -642,12 +638,12 @@ Use only ASCII characters to ensure compatibility.
             return f"Error: API returned status code {response.status_code}. {response.text}"
     
     except Exception as e:
-        return f"Sorry, I couldn't generate an improved version of your resume due to an error.\n\nDetails: {str(e)}\n\nPlease check your API key configuration or try again later."
+        return f"Sorry, I couldn't generate an improved version of your resume due to an error. Please try again later."
 
 # Clean AI response
 def clean_response(text):
     if text is None:
-        return "No response received from the API. Please check your API key and try again."
+        return "No response received from the AI. Please try again later."
         
     try:
         text = re.sub(r'\*\*(.*?)\*\*', r'\1', text)
@@ -756,20 +752,20 @@ if not uploaded_file or not job_role:
     col1, col2 = st.columns(2)
     with col1:
         with st.container():
-            st.markdown("##### ✓ Content Quality")
+            st.markdown("##### ✓  Content Quality")
             st.caption("Evaluates overall resume structure, clarity and effectiveness")
         
         with st.container():
-            st.markdown("##### ✓ Key Strengths")
-            st.caption("Identifies your most marketable skills and achievements")
+            st.markdown("##### ✓  Detailed Feedback")
+            st.caption("Provides specific insights on strengths, weaknesses and areas for improvement")
     
     with col2:
         with st.container():
-            st.markdown("##### ✓ Improvement Areas")
+            st.markdown("##### ✓  Improvement Areas")
             st.caption("Highlights missing sections and opportunities for enhancement")
         
         with st.container():
-            st.markdown("##### ✓ Job-specific Tips")
+            st.markdown("##### ✓  Job-specific Tips")
             st.caption("Provides targeted suggestions for your desired position")
 elif st.session_state.analyze_clicked:
     # Both resume and job role are provided and button was clicked
@@ -777,7 +773,7 @@ elif st.session_state.analyze_clicked:
         resume_text = extract_text(uploaded_file)
         
         # Show a clean results panel
-        with st.spinner("Analyzing resume..."):
+        with st.spinner("Analyzing your resume please give me couple of seconds ..."):
             # No intermediate analysis display - just show a simple spinner
             
             analysis_prompt = f"""
@@ -922,4 +918,4 @@ Resume:
         st.error(f"Error processing your resume: {str(e)}")
 else:
     # Files are uploaded but button wasn't clicked yet
-    st.info("Click 'Analyze Resume' in the sidebar to start the analysis.")
+    st.info("Click 'Analyze Resume' in the again to start the analysis.")
