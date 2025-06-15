@@ -380,7 +380,7 @@ with st.sidebar:
 # Add custom footer with new text
 st.markdown("""
 <div class="custom-footer">
-     &copy 2025 ReSkillr AI - Made by Sharaj MM - Full Stack Developer | AI & Cloud Enthusiast.
+     &copy 2025 ReSkillr AI - Made by Sharaj MM.
 </div>
 <div class="bottom-padding"></div>
 """, unsafe_allow_html=True)
