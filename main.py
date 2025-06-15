@@ -773,7 +773,7 @@ elif st.session_state.analyze_clicked:
         resume_text = extract_text(uploaded_file)
         
         # Show a clean results panel
-        with st.spinner("Analyzing your resume please give me couple of seconds ..."):
+        with st.spinner("Analyzing your resume please give me couple of seconds and ..."):
             # No intermediate analysis display - just show a simple spinner
             
             analysis_prompt = f"""
@@ -898,7 +898,7 @@ Resume:
                               text-align: center; 
                               cursor: pointer; 
                               margin-top: 1rem;">
-                        📥 Download as PDF
+                        📥 Download as PDF ( No format )
                     </a>
                     """
                     st.markdown(download_button_str, unsafe_allow_html=True)
@@ -918,4 +918,4 @@ Resume:
         st.error(f"Error processing your resume: {str(e)}")
 else:
     # Files are uploaded but button wasn't clicked yet
-    st.info("Click 'Analyze Resume' in the again to start the analysis.")
+    st.info("Click 'Analyze Resume' again to start the analysis.")
