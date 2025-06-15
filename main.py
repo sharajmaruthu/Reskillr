@@ -898,7 +898,7 @@ Resume:
                               text-align: center; 
                               cursor: pointer; 
                               margin-top: 1rem;">
-                        📥 Download as PDF ( No format )
+                        📥 Download Unformatted PDF
                     </a>
                     """
                     st.markdown(download_button_str, unsafe_allow_html=True)
