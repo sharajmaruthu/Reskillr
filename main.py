@@ -525,7 +525,7 @@ def extract_text(uploaded_file):
         try:
             reader = PyPDF2.PdfReader(uploaded_file)
             text_content = "\n".join([page.extract_text() for page in reader.pages if page.extract_text()])
-            return text_content if text_content.strip() else "Sorry, No text content could be extracted from this PDF."
+            return text_content if text_content.strip() else "Sorry, No text content could be extracted from this file."
         except Exception as e:
             return f"Error extracting PDF content: {str(e)}"
     else:
@@ -762,7 +762,7 @@ elif st.session_state.analyze_clicked:
         resume_text = extract_text(uploaded_file)
         
         # Show a clean results panel
-        with st.spinner("Analyzing your resume please give me couple of seconds and ..."):
+        with st.spinner("I'm analyzing your resume please give me couple of seconds ..."):
             # No intermediate analysis display - just show a simple spinner
             
             analysis_prompt = f"""
